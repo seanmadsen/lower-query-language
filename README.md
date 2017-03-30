@@ -99,7 +99,7 @@ JOIN tz ON
 JOIN person supervisor ON
   supervisor.id = person.supervisor_id
 LEFT JOIN phone ON
-  phone.person_id = person.id
+  phone.person_id = person.id AND
   phone.number LIKE "617%"
 WHERE
   ( 
@@ -107,7 +107,7 @@ WHERE
     person.nick_name = "Liz"
   ) AND
   person.is_deleted IS NOT NULL AND
-  person.birth_date <= now() - INTERVAL 18 YEAR
+  person.birth_date <= now() - INTERVAL 18 YEAR AND
   phone.id IS NULL
 GROUP BY person.id;
 ```
